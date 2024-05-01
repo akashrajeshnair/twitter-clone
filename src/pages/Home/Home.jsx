@@ -1,8 +1,10 @@
 import {React, useEffect, useState} from 'react';
-import Tweet from './Tweet';
+import Sidebar from '../../components/Sidebar/Sidebar';
+import Feed from '../../components/Feed/Feed';
 import { useNavigate } from 'react-router';
 import { onAuthStateChanged } from '@firebase/auth';
-import { auth } from '../firebase/firebase-config';
+import { auth } from '../../firebase/firebase-config';
+import './Home.css';
 
 const Home = () => {
     useEffect(() => {
@@ -44,20 +46,9 @@ const Home = () => {
     }
 
     return (
-        <div>
-            <div>
-                <h1>Welcome, {user.name}!</h1>
-                <p>Username: {user.username}</p>
-                <p>Bio: {user.bio}</p>
-                {/* Add more user details as needed */}
-            </div>
-            <div>
-                {/* Render a list of tweet components */}
-                {/* Assuming you have an array of tweet objects */}
-                {tweets.map((tweet) => (
-                    <Tweet key={tweet.id} user={user} tweet={tweet} />
-                ))}
-            </div>
+        <div className='home'>
+            <Sidebar/>
+            <Feed/>
         </div>
     );
 };

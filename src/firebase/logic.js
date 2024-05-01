@@ -1,6 +1,6 @@
 import { signInWithEmailAndPassword, signOut, createUserWithEmailAndPassword } from "firebase/auth";
 import { auth } from "./firebase-config";
-import { addDoc, doc, setDoc } from '@firebase/firestore';
+import { addDoc, doc, setDoc, onSnapshot, collection } from '@firebase/firestore';
 import {firestore} from '../firebase/firebase-config.js';
 
 
@@ -48,4 +48,10 @@ async function signUp(user) {
     }
 }
 
-export {signIn, signOutTwitter, signUp};
+const fetchPosts = () => {
+    return db.collection("user.following.posts").onSnapshot((snapshot) =>
+      setPosts(snapshot.docs.map((doc) => doc.data()))
+    );
+  };
+
+export {signIn, signOutTwitter, signUp, fetchPosts};

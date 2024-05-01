@@ -1,12 +1,13 @@
 import React, { useState } from 'react';
 import { signUp } from '../firebase/logic';
-import { redirect, useNavigate } from 'react-router';
+import { useNavigate } from 'react-router';
 
 const SignUp = () => {
     const [username, setUsername] = useState('');
     const [displayName, setDisplayName] = useState('');
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
+    const [confPassword, setConfPassword] = useState('');
     const [profilePic, setProfilePic] = useState('');
     const [bio, setBio] = useState('');
     const navigate = useNavigate();
@@ -61,9 +62,17 @@ const SignUp = () => {
                     onChange={(e) => setPassword(e.target.value)}
                 />
 
-                <label htmlFor="Bio">Bio:</label>
+                <label htmlFor="confpassword">Confirm Password:</label>
                 <input
                     type="password"
+                    id="confpassword"
+                    value={confPassword}
+                    onChange={(e) => setConfPassword(e.target.value)}
+                />
+
+                <label htmlFor="Bio">Bio:</label>
+                <input
+                    type="text"
                     id="password"
                     value={bio}
                     onChange={(e) => setBio(e.target.value)}
